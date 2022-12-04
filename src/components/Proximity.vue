@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import proximityApi from '../api/proximityApi';
+const emits = defineEmits(['proximity']);
 const proximity = ref(0);
 const getSensorData = () => {
   setInterval( async() => {
     const { data } = await proximityApi.get('');
-    proximity.value = data;
-    console.log( data );
-  } , 1000);
+    proximity.value = data.distance;
+    emits('proximity', proximity.value);
+  } , 500);
 };
 getSensorData();
 </script>
