@@ -8,7 +8,7 @@ const getSensorData = () => {
     const { data } = await proximityApi.get('');
     proximity.value = data.distance;
     emits('proximity', proximity.value);
-  } , 500);
+  }, 500);
 };
 getSensorData();
 </script>
